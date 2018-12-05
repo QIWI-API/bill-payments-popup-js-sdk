@@ -5,14 +5,14 @@ import Button from './components/Button';
 import InvoiceContext from './InvoiceContext';
 
 const App = () => {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
   const invoiceParams = useContext(InvoiceContext);
 
   return (
     <Fragment>
       <Button onClick={() => setIsActive(true)}>Hello</Button>
       <Popup isActive={isActive} onClickClose={() => setIsActive(false)}>
-        <CheckoutIframe invoiceUid={invoiceParams.invoiceUid} />
+        <CheckoutIframe {...invoiceParams} />
       </Popup>
     </Fragment>
   );

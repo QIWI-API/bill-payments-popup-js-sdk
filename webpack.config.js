@@ -21,5 +21,6 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname)
   },
+  devtool: "source-map",
   plugins: [new webpack.EnvironmentPlugin(['CHECKOUT_URL'])]
 };
