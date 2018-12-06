@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-// Сюда тесты
+// TODO: Тестить сюда
 export const extractInvoiceParams = element => {
   const sharedParams = [
     'billId',

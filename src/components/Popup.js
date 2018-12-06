@@ -1,35 +1,42 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import Support from './Support/Support';
 
-const Container = ({ children }) => (
-  <div
-    style={{
-      position: 'relative',
-      width: '820px',
-      height: '600px'
-    }}
-  >
-    {children}
-  </div>
-);
+const Container = styled.div`
+  position: relative;
+  width: 820px;
+  height: 560px;
 
-const CloseButton = ({ onClick }) => (
-  <button
-    onClick={onClick}
-    style={{
-      appearence: 'none',
-      background: 'transparent',
-      border: 'none',
-      fontSize: '2rem',
-      position: 'absolute',
-      top: '0px',
-      right: '0px'
-    }}
-  >
-    ✕
-  </button>
-);
+  @media (max-width: 820px) {
+    width: 100%;
+    height: 100%;
+  }
 
-const Popup = ({ children, isActive, onClickClose }) => {
+  @media (max-width: 475px) {
+    background-color: #fff;
+    padding-top: 60px;
+  }
+`;
+
+const CloseButton = styled.button`
+  appearance: none;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #666;
+  outline: none;
+  z-index: 2;
+  cursor: pointer;
+  
+  @media (max-width: 475px) {
+    top: 40px;
+  }
+`;
+
+const Popup = ({ children, isActive, onClickClose, className }) => {
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key === 'Escape') {
@@ -42,28 +49,41 @@ const Popup = ({ children, isActive, onClickClose }) => {
   });
 
   return (
-    <div
-      style={{
-        display: isActive ? 'flex' : 'none',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 1000,
-        position: 'absolute',
-        left: '0',
-        top: '0',
-        width: '100vw',
-        height: '100vh',
-        margin: '0 auto',
-        backgroundColor: 'rgba(0, 0, 0, 25%)'
-      }}
-    >
+    <div className={className}>
       <Container>
+        <CloseButton onClick={onClickClose}>✕</CloseButton>
         {children}
-        <CloseButton onClick={onClickClose} />
       </Container>
+      <Support />
     </div>
   );
 };
 
-export default Popup;
+const StyledPopup = styled(Popup)`
+  position: absolute;
+  z-index: 1000;
+  display: ${props => (props.isActive ? 'flex' : 'none')}
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  
+  background-color: rgba(0, 0, 0, 0.7);
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  ${Support} {
+    margin-top: 18px;
+  }
+  
+  @media (max-width: 820px) {
+    ${Support} {
+      display: none;
+    }  
+  }
+
+`;
+
+export default StyledPopup;
