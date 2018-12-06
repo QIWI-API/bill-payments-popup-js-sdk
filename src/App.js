@@ -1,19 +1,19 @@
-import React, { useState, useContext, Fragment } from 'react';
+import React, { useState } from 'react';
 import Popup from './components/Popup';
 import CheckoutIframe from './components/CheckoutIframe';
-import InvoiceContext from './InvoiceContext';
 
-const App = () => {
-  const [isActive, setIsActive] = useState(false);
-  const invoiceParams = useContext(InvoiceContext);
+const App = ({ onUnmountPopup, invoiceParams }) => {
+  const [isActive, setIsActive] = useState(true);
+
+  const onClickClose = () => {
+    setIsActive(false);
+    onUnmountPopup();
+  };
 
   return (
-    <Fragment>
-      <button onClick={() => setIsActive(true)}>Hello</button>
-      <Popup isActive={isActive} onClickClose={() => setIsActive(false)}>
-        <CheckoutIframe {...invoiceParams} />
-      </Popup>
-    </Fragment>
+    <Popup isActive={isActive} onClickClose={onClickClose}>
+      <CheckoutIframe {...invoiceParams} />
+    </Popup>
   );
 };
 

@@ -1,7 +1,7 @@
 import qs from 'qs';
 
 // TODO: Тестить сюда
-export const extractInvoiceParams = element => {
+export const extractInvoiceParams = rawParams => {
   const sharedParams = [
     'billId',
     'phone',
@@ -10,16 +10,16 @@ export const extractInvoiceParams = element => {
     'comment',
     'lifetime'
   ].reduce((acc, key) => {
-    const value = element.getAttribute(key);
+    const value = rawParams[key];
     if (value) {
       acc[key] = value;
     }
   });
 
-  const payUrl = element.getAttribute('payUrl');
+  const payUrl = rawParams['payUrl'];
 
-  const publicKey = element.getAttribute('publicKey');
-  const amount = element.getAttribute('amount');
+  const publicKey = rawParams['publicKey'];
+  const amount = rawParams['amount'];
 
   if (payUrl) {
     const url = new URL(payUrl);

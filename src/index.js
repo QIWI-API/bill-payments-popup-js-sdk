@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import InvoiceContext from './InvoiceContext';
 import { extractInvoiceParams } from './helpers';
+import App from './App';
 
-const scriptElement = document.currentScript;
-const parentElement = scriptElement.parentElement;
-const targetDiv = document.createElement('div');
-const targetElement = parentElement.appendChild(targetDiv);
+export const createInvoice = (params = {}) => {
+  const targetElement = document.createElement('div');
+  document.body.appendChild(targetElement);
 
-const invoiceParams = extractInvoiceParams(scriptElement);
+  const onUnmountPopup = () => ReactDOM.unmountComponentAtNode(targetElement);
+  const invoiceParams = extractInvoiceParams(params);
 
-ReactDOM.render(
-  <InvoiceContext.Provider value={invoiceParams}>
-    <App />
-  </InvoiceContext.Provider>,
-  targetElement
-);
+  window.addEventListener('message', (event) => {
+    if(event.data === 'paymentSucceeded') {
+      setTimeout(onUnmountPopup, 2000)
+    }
+  });
+
+  ReactDOM.render(
+    <App invoiceParams={invoiceParams} onUnmountPopup={onUnmountPopup} />,
+    targetElement
+  );
+};

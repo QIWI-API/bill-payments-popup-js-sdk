@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    library: 'checkoutPopup'
+    library: 'checkout'
 },
   module: {
     rules: [
