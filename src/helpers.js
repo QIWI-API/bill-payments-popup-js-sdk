@@ -1,6 +1,5 @@
 import qs from 'qs';
 
-// TODO: Тестить сюда
 export const extractInvoiceParams = rawParams => {
   const sharedParams = [
     'billId',
@@ -17,7 +16,6 @@ export const extractInvoiceParams = rawParams => {
   });
 
   const payUrl = rawParams['payUrl'];
-
   const publicKey = rawParams['publicKey'];
   const amount = rawParams['amount'];
 
@@ -26,12 +24,18 @@ export const extractInvoiceParams = rawParams => {
     const queryString = url.search.slice(1);
     const { invoiceUid } = qs.parse(queryString);
     if (invoiceUid) {
-      return { invoiceUid, ...sharedParams };
+      return {
+        queryParams: { invoiceUid, ...sharedParams },
+        page: 'form'
+      };
     } else {
       throw new Error('payUrl');
     }
   } else if (publicKey && amount) {
-    return { publicKey, amount, ...sharedParams };
+    return {
+      queryParams: { publicKey, amount, ...sharedParams },
+      page: 'create'
+    };
   } else {
     throw new Error('params');
   }
