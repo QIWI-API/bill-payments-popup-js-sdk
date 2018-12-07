@@ -9,7 +9,7 @@
   <body>
     <h1>QIWI Checkout popup</h1>
     <button
-      onclick="checkout.createInvoice({
+      onclick="QiwiCheckout.openInvoice({
         payUrl: 'https://oplata.qiwi.com/form?invoiceUid=f86df313-b574-4c1d-8493-9cd99b3525f6'})
             .then((v)=>alert(JSON.stringify(v)))">
       Create

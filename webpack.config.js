@@ -6,8 +6,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    library: 'checkout'
-},
+    library: 'QiwiCheckout'
+  },
   module: {
     rules: [
       {
@@ -19,13 +19,13 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        use: ['@svgr/webpack']
       }
     ]
   },
   devServer: {
     contentBase: path.resolve(__dirname)
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   plugins: [new webpack.EnvironmentPlugin(['CHECKOUT_URL'])]
 };
