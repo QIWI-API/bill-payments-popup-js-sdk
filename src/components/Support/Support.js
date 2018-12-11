@@ -17,7 +17,7 @@ const Partners = styled.div`
 
 const HelpLink = styled.a`
   color: #999;
-  font-family: 'Helvetica Neue', serif;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -36,7 +36,7 @@ const Support = ({ className }) => (
       <PciBanner />
       <VisaBanner />
     </Partners>
-    <HelpLink href="google.com">Помощь</HelpLink>
+    <HelpLink target='_blank' href="https://qiwi.com/support.action">Помощь</HelpLink>
   </div>
 );
 

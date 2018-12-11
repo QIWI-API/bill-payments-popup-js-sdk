@@ -1,15 +1,14 @@
 import qs from 'qs';
 
 const extractSharedParams = params =>
-  ['billId', 'phone', 'email', 'account', 'comment', 'lifetime'].reduce(
+  ['billId', 'phone', 'email', 'account', 'comment', 'lifetime', 'customFields'].reduce(
     (acc, key) => {
       const value = params[key];
       if (value) {
         acc[key] = value;
       }
       return acc
-    }
-  );
+    }, {});
 
 export const extractCreateInvoiceParams = params => {
   const publicKey = params['publicKey'];

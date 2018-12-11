@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import Support from './Support/Support';
+import Support from './Support';
 
 const Container = styled.div`
   position: relative;
