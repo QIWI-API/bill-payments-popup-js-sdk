@@ -11,23 +11,23 @@ const showCheckoutPopup = invoiceParams =>
     const targetElement = document.createElement('div');
     document.body.appendChild(targetElement);
 
-    const onUnmountPopup = () => {
+    const unmountPopup = () => {
       ReactDOM.unmountComponentAtNode(targetElement);
       document.body.removeChild(targetElement);
     };
 
     const onPaymentSucceeded = () => {
-      onUnmountPopup();
+      unmountPopup();
       resolve({ status: 'PAYMENT_SUCCEEDED', ...invoiceParams.queryParams });
     };
 
     const onPopupClosed = () => {
-      onUnmountPopup();
+      unmountPopup();
       reject({ status: 'POPUP_CLOSED' });
     };
 
     const onPaymentFailed = () => {
-      onUnmountPopup();
+      unmountPopup();
       reject({ status: 'PAYMENT_FAILED' });
     };
 

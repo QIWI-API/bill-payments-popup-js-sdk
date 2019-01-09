@@ -8,7 +8,7 @@ const CheckoutIframe = ({page, queryParams}) => {
 
   return (
     <iframe
-      src={`${CHECKOUT_URL}/${page}?${queryString}&embedded=true`}
+      src={`${CHECKOUT_URL}/${page}?${queryString}&embedded=true&billref=popup`}
       frameBorder="0"
       width="100%"
       height="100%"
