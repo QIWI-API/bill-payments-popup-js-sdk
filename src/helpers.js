@@ -1,14 +1,20 @@
 import qs from 'qs';
+import moment from 'moment';
 
 const extractSharedParams = params =>
   ['billId', 'phone', 'email', 'account', 'comment', 'lifetime', 'customFields'].reduce(
     (acc, key) => {
       const value = params[key];
       if (value) {
-        acc[key] = value;
+        if (key === 'lifetime') {
+          acc[key] = moment(value).format('YYYY-MM-DDThhmm')
+        } else {
+          acc[key] = value;
+        }
       }
       return acc
-    }, {});
+    }, {}
+  );
 
 export const extractCreateInvoiceParams = params => {
   const publicKey = params['publicKey'];
@@ -38,7 +44,7 @@ export const extractOpenInvoiceParams = params => {
 
   if (invoiceUid) {
     return {
-      queryParams: { invoiceUid, ...extractSharedParams(params) },
+      queryParams: { invoiceUid },
       page: 'form'
     };
   } else {

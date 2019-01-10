@@ -18,7 +18,7 @@ const showCheckoutPopup = invoiceParams =>
 
     const onPaymentSucceeded = () => {
       unmountPopup();
-      resolve({ status: 'PAYMENT_SUCCEEDED', ...invoiceParams.queryParams });
+      resolve({ ...invoiceParams.queryParams });
     };
 
     const onPopupClosed = () => {

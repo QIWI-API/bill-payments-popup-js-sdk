@@ -27,5 +27,8 @@ module.exports = {
     contentBase: path.resolve(__dirname)
   },
   devtool: 'source-map',
-  plugins: [new webpack.EnvironmentPlugin(['CHECKOUT_URL'])]
+  plugins: [
+    new webpack.EnvironmentPlugin(['CHECKOUT_URL']),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+  ]
 };

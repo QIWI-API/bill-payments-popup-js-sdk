@@ -20,6 +20,7 @@
     "start": "CHECKOUT_URL=https://oplata-test.qiwi.com webpack-dev-server --hot --inline --mode=development"
   },
   "dependencies": {
+    "moment": "^2.23.0",
     "qs": "^6.6.0",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",

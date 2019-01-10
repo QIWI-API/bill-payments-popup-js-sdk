@@ -19,6 +19,7 @@
       text-align: center;
       cursor: pointer;
       color: #000;
+      background-color: #DDD;
       padding: 0.5rem 3rem;
       border-radius: 24px;
       border: 2px solid #DDD;
@@ -30,6 +31,7 @@
     .container button:active,
     .container button:focus {
       border: 2px solid rgb(255, 140, 0);
+      background-color: #DDD;
     }
   </style>
   <script src="bundle.js"></script>
@@ -38,9 +40,9 @@
 <body>
   <div class="container">
     <h1>QIWI Checkout popup</h1>
-      <button onclick="QiwiCheckout.openInvoice({
-        payUrl: 'https://oplata.qiwi.com/form?invoiceUid=ce681d2a-1a9a-4280-9aa0-ede8c6c23324',
-        customFields: {'data': 2}
+      <button onclick="QiwiCheckout.createInvoice({
+        publicKey: '2tbp1WQvsgQeziGY9vTLe9vDZNg7tmCymb4Lh6STQokqKrpCC6qrUUKEDZAJ11HeiD1GQX8jTnjMxLpMcSZuGZP7wD7STrmuwdnMLDLhm7wxGRe4htR1y9SPmpv44',
+        amount: '1'
       })">
         Click
       </button>
