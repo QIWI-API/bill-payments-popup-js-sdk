@@ -11,7 +11,7 @@ const App = ({ onPopupClosed, invoiceParams }) => {
   };
 
   return (
-    <Popup isActive={isActive} onClickClose={onClickClose}>
+    <Popup isActive={isActive} onClose={onClickClose}>
       <CheckoutIframe {...invoiceParams} />
     </Popup>
   );

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Support from './Support';
+import ConfirmModal from './ConfirmModal';
+import { useState } from 'react';
 
 const Container = styled.div`
   position: relative;
@@ -36,11 +38,15 @@ const CloseButton = styled.button`
   }
 `;
 
-const Popup = ({ children, isActive, onClickClose, className }) => {
+const Popup = ({ children, isActive, onClose, className }) => {
+  const [isConfirmModalActive, setIsConfirmModalActive] = useState(false);
+  const showConfirmModal = () => setIsConfirmModalActive(true)
+  const closeConfirmModal = () => setIsConfirmModalActive(false)
+
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.key === 'Escape') {
-        onClickClose();
+        closeConfirmModal()
       }
     }
 
@@ -49,13 +55,21 @@ const Popup = ({ children, isActive, onClickClose, className }) => {
   });
 
   return (
-    <div className={className}>
-      <Container>
-        <CloseButton onClick={onClickClose}>✕</CloseButton>
-        {children}
-      </Container>
-      <Support />
-    </div>
+    <React.Fragment>
+      <div className={className}>
+        <Container>
+          <CloseButton onClick={showConfirmModal}>✕</CloseButton>
+          {children}
+        </Container>
+        <Support />
+      </div>
+      <ConfirmModal
+        isActive={isConfirmModalActive}
+        onAccept={onClose}
+        onReject={closeConfirmModal}
+        message="Вы уверены, что хотите закрыть окно?"
+      />
+    </React.Fragment>
   );
 };
 
