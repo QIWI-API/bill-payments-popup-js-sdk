@@ -23,12 +23,12 @@ const showCheckoutPopup = invoiceParams =>
 
     const onPopupClosed = () => {
       unmountPopup();
-      reject({ status: 'POPUP_CLOSED' });
+      reject({ reason: 'POPUP_CLOSED' });
     };
 
     const onPaymentFailed = () => {
       unmountPopup();
-      reject({ status: 'PAYMENT_FAILED' });
+      reject({ reason: 'PAYMENT_FAILED' });
     };
 
     window.addEventListener('message', event => {
