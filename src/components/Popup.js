@@ -97,7 +97,6 @@ const StyledPopup = styled(Popup)`
       display: none;
     }  
   }
-
 `;
 
 export default StyledPopup;

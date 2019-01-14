@@ -16,7 +16,8 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "build": "CHECKOUT_URL=https://oplata.qiwi.com webpack --mode=production",
+    "build": "CHECKOUT_URL=https://oplata.qiwi.com webpack --mode=production --config webpack.browser.js",
+    "build:npm": "CHECKOUT_URL=https://oplata.qiwi.com webpack --mode=production --config webpack.npm.js",
     "start": "CHECKOUT_URL=https://oplata-test.qiwi.com webpack-dev-server --hot --inline --mode=development"
   },
   "dependencies": {
