@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PrimaryButton } from './Button';
+import { Button, PrimaryButton } from './Button';
 
 const Text = styled.div`
     font-family: 'Helvetica Neue', sans-serif;
@@ -14,7 +14,7 @@ const ButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
 
-    ${PrimaryButton}:nth-of-type(2) {
+    ${Button} {
         margin-left: 20px;
     }
 
@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
         align-items: center;
         justify-content: center;
 
-        ${PrimaryButton}:nth-of-type(2) {
+        ${Button} {
             margin-left: 0;
             margin-top: 16px;
         }  
@@ -36,7 +36,7 @@ const ConfirmModal = ({ isActive, onAccept, onReject, className, message }) => {
             <Text>{message}</Text>
             <ButtonContainer>
                 <PrimaryButton onClick={onAccept}>Закрыть</PrimaryButton>
-                <PrimaryButton onClick={onReject}>Отмена</PrimaryButton>
+                <Button onClick={onReject}>Отмена</Button>
             </ButtonContainer>
         </div>
     );
