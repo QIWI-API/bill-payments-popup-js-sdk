@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   extractCreateInvoiceParams,
-  extractOpenInvoiceParams
+  extractOpenInvoiceParams,
+  extractPreorderParams
 } from './helpers';
 import App from './App';
 
-const showCheckoutPopup = invoiceParams =>
+const showCheckoutPopup = ({params, type}) =>
   new Promise((resolve, reject) => {
     const targetElement = document.createElement('div');
     document.body.appendChild(targetElement);
@@ -41,7 +42,8 @@ const showCheckoutPopup = invoiceParams =>
 
     ReactDOM.render(
       <App
-        invoiceParams={invoiceParams}
+        type={type}
+        params={params}
         onPopupClosed={onPopupClosed}
       />,
       targetElement
@@ -50,10 +52,15 @@ const showCheckoutPopup = invoiceParams =>
 
 export const createInvoice = (params = {}) => {
   const invoiceParams = extractCreateInvoiceParams(params);
-  return showCheckoutPopup(invoiceParams);
+  return showCheckoutPopup({params: invoiceParams, type: "CHECKOUT"});
 };
 
 export const openInvoice = (params = {}) => {
   const invoiceParams = extractOpenInvoiceParams(params);
-  return showCheckoutPopup(invoiceParams);
+  return showCheckoutPopup({params: invoiceParams, type: "CHECKOUT"});
 };
+
+export const openPreorder = (params = {}) => {
+  const preorderParams = extractPreorderParams(params)
+  return showCheckoutPopup({params: preorderParams, type: "PREORDER"});
+}

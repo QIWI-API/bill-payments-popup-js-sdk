@@ -51,3 +51,15 @@ export const extractOpenInvoiceParams = params => {
     throw new Error('Invalid payUrl');
   }
 };
+
+export const extractPreorderParams = (params) => {
+  const widgetAlias = params['widgetAlias'];
+
+  if (widgetAlias) {
+    return {
+      widgetAlias
+    };
+  } else {
+    throw new Error('Invalid widget alias');
+  }
+}
