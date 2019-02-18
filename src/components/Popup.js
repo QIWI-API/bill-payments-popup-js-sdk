@@ -76,7 +76,7 @@ const Popup = ({ children, isActive, onClose, className }) => {
 const StyledPopup = styled(Popup)`
   position: fixed;
   z-index: 1000;
-  display: ${props => (props.isActive ? 'flex' : 'none')}
+  display: ${props => (props.isActive ? 'flex' : 'none')};
   width: 100vw;
   height: 100vh;
   left: 0;
