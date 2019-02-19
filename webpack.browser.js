@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -28,7 +29,7 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
-    new webpack.EnvironmentPlugin(['CHECKOUT_URL']),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new Dotenv()
   ]
 };

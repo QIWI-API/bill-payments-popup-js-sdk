@@ -1,14 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import qs from 'qs';
-
-
-const IframeWrapper = styled.div`
-  border-radius: 10px;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`
+import IframeWrapper from './IframeWrapper';
 
 const CHECKOUT_URL = process.env.CHECKOUT_URL;
 
