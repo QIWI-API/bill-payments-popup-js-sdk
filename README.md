@@ -8,7 +8,7 @@
 
 ## Методы
 
-В библиотеке доступны 2 функции: `QiwiCheckout.openInvoice` и `QiwiCheckout.createInvoice`.
+В библиотеке доступны 3 функции: `QiwiCheckout.openInvoice`, `QiwiCheckout.createInvoice` и `QiwiCheckout.openPreorder`.
 
 В случае успешной оплаты Promise resolve-ится с параметрами с которыми был создан счет, иначе reject-ится с причиной из-за которой оплата была прервана.
 
@@ -104,3 +104,11 @@ QiwiCheckout.createInvoice(params)
         // ...
     })
 ```
+
+### Открытие my.qiwi.com
+
+Метод `QiwiCheckout.openPreorder` открывает my.qiwi.com. В параметрах нужно указать: 
+
+| Параметр | Описание | Тип | Обязательное |
+|-|-|-|-|
+| widgetAlias | Алиас виджета | String | + |
