@@ -44,8 +44,8 @@ const ConfirmModal = ({ isActive, onAccept, onReject, className, message }) => {
 
 const StyledConfirmModal = styled(ConfirmModal)`
   position: fixed;
-  z-index: 1001;
-  display: ${props => (props.isActive ? 'flex' : 'none')}
+  z-index: 100001;
+  display: ${props => (props.isActive ? 'flex' : 'none')};
   width: 100vw;
   height: 100vh;
   left: 0;
