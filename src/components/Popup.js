@@ -24,17 +24,23 @@ const CloseButton = styled.button`
   appearance: none;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  color: #666;
+  font-size: 2rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  color: #AAA;
   outline: none;
   z-index: 2;
   cursor: pointer;
   
   @media (max-width: 475px) {
     top: 40px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #CCC;
   }
 `;
 
@@ -56,8 +62,8 @@ const Popup = ({ children, isActive, onClose, className }) => {
 
   return (
     <React.Fragment>
-      <div className={className}>
-        <Container>
+      <div className={className} onClick={showConfirmModal}>
+        <Container onClick={e => e.stopPropagation()}>
           <CloseButton onClick={showConfirmModal}>✕</CloseButton>
           {children}
         </Container>
