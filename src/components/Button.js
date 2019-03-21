@@ -15,7 +15,7 @@ export const Button = styled.button`
     color: #000;
     transition: all 300ms;
     background-color: #fff;
-    outline: none
+    outline: none;
 
     &:hover {
         background-color: #f1f1f1;
@@ -41,7 +41,7 @@ export const PrimaryButton = styled.button`
     color: #FFF;
     transition: all 300ms;
     background-color: #ff8c00;
-    outline: none
+    outline: none;
 
     &:hover {
         background-color: #ff8200;

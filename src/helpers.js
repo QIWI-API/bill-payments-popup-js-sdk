@@ -37,7 +37,7 @@ export const extractOpenInvoiceParams = params => {
   try {
     const url = new URL(payUrl);
     const queryString = url.search.slice(1);
-    invoiceUid = qs.parse(queryString).invoiceUid;
+    invoiceUid = qs.parse(queryString).invoiceUid || qs.parse(queryString).invoice_uid;
   } catch (e) {
     throw new Error('Invalid payUrl');
   }

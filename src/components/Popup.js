@@ -16,7 +16,6 @@ const Container = styled.div`
 
   @media (max-width: 475px) {
     background-color: #fff;
-    padding-top: 60px;
   }
 `;
 
@@ -24,7 +23,7 @@ const CloseButton = styled.button`
   appearance: none;
   background: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 1rem;
   position: fixed;
   right: 1rem;
   top: 1rem;
@@ -34,7 +33,8 @@ const CloseButton = styled.button`
   cursor: pointer;
   
   @media (max-width: 475px) {
-    top: 40px;
+    right: 5px;
+    top: 5px;
   }
 
   &:hover,
