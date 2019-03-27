@@ -3,8 +3,6 @@ import IframeWrapper from './IframeWrapper';
 
 const PREORDER_URL = process.env.PREORDER_URL;
 
-console.log(process.env)
-
 const PreorderIframe = ({widgetAlias}) => {
   return (
     <IframeWrapper>

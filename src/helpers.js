@@ -17,37 +17,36 @@ const extractParams = (params, availableParams) =>
   );
 
 export const extractCreateInvoiceParams = params => {
-  const publicKey = params['publicKey'];
-  const amount = params['amount'];
   const availableParams = ['billId', 'phone', 'email', 'account', 'comment', 'lifetime', 'customFields', 'paySource']
-  if (publicKey && amount) {
-    return {
-      queryParams: { publicKey, amount, ...extractParams(params, availableParams) },
-      page: 'create'
-    };
-  } else {
+  
+  if (!params['publicKey'] || !params['amount']) {
     throw new Error('Invalid publicKey or amount');
   }
+
+  return {
+    queryParams: { ...params, ...extractParams(params, availableParams) },
+    page: 'create'
+  };
 };
 
 export const extractOpenInvoiceParams = params => {
   const payUrl = params['payUrl'];
-  let invoiceUid
   const availableParams = ['paySource']
+  let queryParams;
 
   try {
     const url = new URL(payUrl);
     const queryString = url.search.slice(1);
-    invoiceUid = qs.parse(queryString).invoiceUid || qs.parse(queryString).invoice_uid;
+    queryParams = qs.parse(queryString)
   } catch (e) {
     throw new Error('Invalid payUrl');
   }
 
-  if (invoiceUid) {
-    return { queryParams: { invoiceUid, ...extractParams(params, availableParams) }, page: 'form' };
-  } else {
+  if (!queryParams.invoiceUid && !queryParams.invoice_uid) {
     throw new Error('Invalid payUrl');
   }
+
+  return { queryParams: { ...queryParams, ...extractParams(params, availableParams) }, page: 'form' };
 };
 
 export const extractPreorderParams = (params) => {
