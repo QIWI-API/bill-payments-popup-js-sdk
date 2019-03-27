@@ -1,8 +1,8 @@
 import qs from 'qs';
 import moment from 'moment';
 
-const extractSharedParams = params =>
-  ['billId', 'phone', 'email', 'account', 'comment', 'lifetime', 'customFields'].reduce(
+const extractParams = (params, availableParams) =>
+  availableParams.reduce(
     (acc, key) => {
       const value = params[key];
       if (value) {
@@ -19,10 +19,10 @@ const extractSharedParams = params =>
 export const extractCreateInvoiceParams = params => {
   const publicKey = params['publicKey'];
   const amount = params['amount'];
-
+  const availableParams = ['billId', 'phone', 'email', 'account', 'comment', 'lifetime', 'customFields', 'paySource']
   if (publicKey && amount) {
     return {
-      queryParams: { publicKey, amount, ...extractSharedParams(params) },
+      queryParams: { publicKey, amount, ...extractParams(params, availableParams) },
       page: 'create'
     };
   } else {
@@ -33,6 +33,7 @@ export const extractCreateInvoiceParams = params => {
 export const extractOpenInvoiceParams = params => {
   const payUrl = params['payUrl'];
   let invoiceUid
+  const availableParams = ['paySource']
 
   try {
     const url = new URL(payUrl);
@@ -43,10 +44,7 @@ export const extractOpenInvoiceParams = params => {
   }
 
   if (invoiceUid) {
-    return {
-      queryParams: { invoiceUid },
-      page: 'form'
-    };
+    return { queryParams: { invoiceUid, ...extractParams(params, availableParams) }, page: 'form' };
   } else {
     throw new Error('Invalid payUrl');
   }
