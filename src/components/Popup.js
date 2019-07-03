@@ -62,7 +62,7 @@ const Popup = ({ children, isActive, onClose, className }) => {
 
   return (
     <React.Fragment>
-      <div className={className} onClick={showConfirmModal}>
+      <div className={className} onClick={showConfirmModal} id="qiwi-checkout-popup">
         <Container onClick={e => e.stopPropagation()}>
           <CloseButton onClick={showConfirmModal}>✕</CloseButton>
           {children}

@@ -19,7 +19,7 @@ const showCheckoutPopup = ({params, type}) =>
 
     const onPaymentSucceeded = () => {
       unmountPopup();
-      resolve({ ...invoiceParams.queryParams });
+      resolve({ ...params.queryParams });
     };
 
     const onPopupClosed = () => {
