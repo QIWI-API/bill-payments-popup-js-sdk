@@ -13,8 +13,8 @@
     "dotenv-webpack": "^1.7.0",
     "prettier": "^1.15.3",
     "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "build": "webpack --mode=production --config webpack.browser.js",
@@ -22,8 +22,8 @@
     "start": "webpack-dev-server --hot --inline --mode=development --config webpack.browser.js"
   },
   "dependencies": {
-    "moment": "^2.23.0",
-    "qs": "^6.6.0",
+    "moment": "^2.25.3",
+    "qs": "^6.9.4",
     "react": "16.7.0-alpha.2",
     "react-dom": "16.7.0-alpha.2",
     "styled-components": "^4.1.2"

@@ -27,7 +27,7 @@
       outline: none;
     }
 
-    .container button:hover, 
+    .container button:hover,
     .container button:active,
     .container button:focus {
       border: 2px solid rgb(255, 140, 0);
@@ -40,7 +40,18 @@
 <body>
   <div class="container">
     <h1>QIWI Checkout popup</h1>
-      <button onclick="QiwiCheckout.openInvoice({payUrl: 'https://oplata.qiwi.com/form/?invoiceUid=9f2bfc7b-2ab9-41af-85a3-26abbbb9ae07&paySource=qw'})">
+      <button onclick="QiwiCheckout.createInvoice({
+      publicKey: '2ZnUJD9RnGy4EGGbXzNJjCdhcf4AotpPhB5BgF6Ca3fDBCKkR9a3URLnAGjTCVZnNRp2wnsKpNXtjRyBPQR3Jog9bzZFAG9jKgbcBA8cR2ECtjPoZB',
+      amount: 1,
+      comment: 'Hello from checkout popup',
+      customFields: {
+          themeCode: 'Sergei-B9skNE_dgl',
+          widgetReferrer:  'my.qiwi.com',
+          widgetAlias: 'bryuzgin'
+          }
+      })
+      .then(console.log)
+      .catch(console.error)">
         Click
       </button>
     </div>
