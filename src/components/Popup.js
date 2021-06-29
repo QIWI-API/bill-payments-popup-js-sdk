@@ -7,7 +7,7 @@ import { useState } from 'react';
 const Container = styled.div`
   position: relative;
   width: 820px;
-  height: 624px;
+  height: 560px;
 
   @media (max-width: 820px) {
     width: 100%;
