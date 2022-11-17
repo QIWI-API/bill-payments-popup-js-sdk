@@ -8,10 +8,14 @@ const Container = styled.div`
   position: relative;
   width: 820px;
   height: 624px;
+  border-radius: 10px;
+  box-shadow: ${props => props.theme.popupShadow};
+  background-color: #fff;
 
-  @media (max-width: 820px) {
+  @media (max-width: 900px) {
     width: 100%;
     height: 100%;
+    border-radius: 0px;
   }
 
   @media (max-width: 475px) {
@@ -24,10 +28,10 @@ const CloseButton = styled.button`
   background: transparent;
   border: none;
   font-size: 1rem;
-  position: fixed;
+  position: ${props => props.theme.closeButtonInsidePopup ? 'absolute' : 'fixed'};;
   right: 1rem;
   top: 1rem;
-  color: #AAA;
+  color: ${props => props.theme.closeButtonInsidePopup ? '#000' : '#AAA'};
   outline: none;
   z-index: 2;
   cursor: pointer;
@@ -88,13 +92,14 @@ const StyledPopup = styled(Popup)`
   left: 0;
   top: 0;
   
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: ${props => props.theme.overlayBackground};
   
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
   ${Support} {
+    display: ${props => props.showSupportBlock ? 'block' : 'none'};
     margin-top: 18px;
   }
   

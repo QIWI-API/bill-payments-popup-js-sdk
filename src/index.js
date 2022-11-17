@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  extractCreateInvoiceParams,
-  extractOpenInvoiceParams,
-  extractPreorderParams
-} from './helpers';
+import {ThemeProvider} from "styled-components";
+import {themes} from "./themes/themes";
 import App from './App';
 
-const showCheckoutPopup = ({params, type}) =>
+export const showCheckoutPopup = ({params, type, theme = themes.v1}) =>
   new Promise((resolve, reject) => {
     const targetElement = document.createElement('div');
     document.body.appendChild(targetElement);
@@ -28,7 +25,6 @@ const showCheckoutPopup = ({params, type}) =>
     };
 
     const onPaymentFailed = () => {
-      unmountPopup();
       reject({ reason: 'PAYMENT_FAILED' });
     };
 
@@ -41,26 +37,13 @@ const showCheckoutPopup = ({params, type}) =>
     });
 
     ReactDOM.render(
-      <App
-        type={type}
-        params={params}
-        onPopupClosed={onPopupClosed}
-      />,
+      <ThemeProvider theme={theme}>
+          <App
+              type={type}
+              params={params}
+              onPopupClosed={onPopupClosed}
+          />
+      </ThemeProvider>,
       targetElement
     );
   });
-
-export const createInvoice = (params = {}) => {
-  const invoiceParams = extractCreateInvoiceParams(params);
-  return showCheckoutPopup({params: invoiceParams, type: "CHECKOUT"});
-};
-
-export const openInvoice = (params = {}) => {
-  const invoiceParams = extractOpenInvoiceParams(params);
-  return showCheckoutPopup({params: invoiceParams, type: "CHECKOUT"});
-};
-
-export const openPreorder = (params = {}) => {
-  const preorderParams = extractPreorderParams(params)
-  return showCheckoutPopup({params: preorderParams, type: "PREORDER"});
-}

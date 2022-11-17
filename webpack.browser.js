@@ -3,11 +3,11 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: { v1: "./src/bundles/spa-v1.js", v2: "./src/bundles/spa-v2.js" },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    library: 'QiwiCheckout'
+    filename: "[name].js",
+    library: ['QiwiCheckout']
   },
   module: {
     rules: [
