@@ -15,7 +15,6 @@ export const showCheckoutPopup = ({params, type, theme = themes.v1}) =>
     };
 
     const onPaymentSucceeded = () => {
-      unmountPopup();
       resolve({ ...params.queryParams });
     };
 
@@ -30,9 +29,11 @@ export const showCheckoutPopup = ({params, type, theme = themes.v1}) =>
 
     window.addEventListener('message', event => {
       if (event.data === 'PAYMENT_SUCCEEDED') {
-        setTimeout(onPaymentSucceeded, 2000);
+        onPaymentSucceeded()
       } else if (event.data === 'PAYMENT_FAILED') {
-        setTimeout(onPaymentFailed, 2000);
+        onPaymentFailed()
+      } else if (event.data === 'SUCCESS_REDIRECT') {
+        onPopupClosed()
       }
     });
 

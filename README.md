@@ -16,8 +16,6 @@
 
 В случае закрытия попапа: `{reason: "POPUP_CLOSED"}`
 
-Через 2 секунды после совершения оплаты форма оплаты закрывается.
-
 ```js
 QiwiCheckout.openInvoice({
     payUrl: 'https://oplata.qiwi.com/form?invoiceUid=06df838c-0f86-4be3-aced-a950c244b5b1'
