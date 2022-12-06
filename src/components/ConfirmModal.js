@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, PrimaryButton } from './Button';
+import {i18n} from "../i18n/utils";
 
 const Text = styled.div`
     font-family: 'Helvetica Neue', sans-serif;
@@ -30,13 +31,13 @@ const ButtonContainer = styled.div`
     }
 `
 
-const ConfirmModal = ({ isActive, onAccept, onReject, className, message }) => {
+const ConfirmModal = ({ isActive, onAccept, onReject, className, message, language }) => {
     return (
         <div className={className}>
             <Text>{message}</Text>
             <ButtonContainer>
-                <PrimaryButton onClick={onAccept}>Закрыть</PrimaryButton>
-                <Button onClick={onReject}>Отмена</Button>
+                <PrimaryButton onClick={onAccept}>{i18n(language, 'common.close')}</PrimaryButton>
+                <Button onClick={onReject}>{i18n(language, 'common.cancel')}</Button>
             </ButtonContainer>
         </div>
     );

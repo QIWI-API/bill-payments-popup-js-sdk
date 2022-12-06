@@ -7,7 +7,8 @@ const IframeWrapper = styled.div`
     
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  min-height: 630px;
+  font-size: 0;
 `
 
 export default IframeWrapper;

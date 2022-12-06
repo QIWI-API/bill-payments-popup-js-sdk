@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import Support from './Support';
 import ConfirmModal from './ConfirmModal';
 import { useState } from 'react';
+import {isCorrectLanguage, i18n} from "../i18n/utils";
 
 const Container = styled.div`
   position: relative;
   width: 820px;
-  height: 624px;
+  overflow: auto;
   border-radius: 10px;
   box-shadow: ${props => props.theme.popupShadow};
   background-color: #fff;
@@ -20,6 +21,7 @@ const Container = styled.div`
 
   @media (max-width: 475px) {
     background-color: #fff;
+    padding-top: 26px;
   }
 `;
 
@@ -37,8 +39,9 @@ const CloseButton = styled.button`
   cursor: pointer;
   
   @media (max-width: 475px) {
-    right: 5px;
-    top: 5px;
+    right: 14px;
+    top: 10px;
+    font-size: 26px;
   }
 
   &:hover,
@@ -52,6 +55,7 @@ const Popup = ({ children, isActive, onClose, className }) => {
   const [isConfirmModalActive, setIsConfirmModalActive] = useState(false);
   const showConfirmModal = () => setIsConfirmModalActive(true)
   const closeConfirmModal = () => setIsConfirmModalActive(false)
+  const [language, setLanguage] = useState('ru')
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -62,6 +66,16 @@ const Popup = ({ children, isActive, onClose, className }) => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  });
+
+  useEffect(() => {
+    function changeLanguage(event) {
+      if (isCorrectLanguage(event.data?.language)) {
+        setLanguage(event.data.language)
+      }
+    }
+    window.addEventListener('message', changeLanguage);
+    return () => window.removeEventListener('message', changeLanguage);
   });
 
   return (
@@ -77,7 +91,8 @@ const Popup = ({ children, isActive, onClose, className }) => {
         isActive={isConfirmModalActive}
         onAccept={onClose}
         onReject={closeConfirmModal}
-        message="Вы уверены, что хотите закрыть окно?"
+        language={language}
+        message={i18n(language, 'exit.message')}
       />
     </React.Fragment>
   );
